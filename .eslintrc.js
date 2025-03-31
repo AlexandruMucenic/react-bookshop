@@ -1,3 +1,5 @@
+const { off } = require("process");
+
 module.exports = {
   env: {
     browser: true,
@@ -21,6 +23,8 @@ module.exports = {
   plugins: ['react', 'react-hooks', 'prettier'],
   rules: {
     'linebreak-style': ['error', 'unix'],
+    'no-undef':'off',
+    'no-unused-vars':'off',
     quotes: ['error', 'single'],
     semi: ['error', 'never'],
     'prettier/prettier': ['error'],

@@ -19,10 +19,10 @@ const Products: React.FC = () => {
   const [inputValue, setInputValue] = useState<string>('')
   const [selectedSortOption, setSelectedSortOption] = useState<string>('')
   const [showCart, setShowCart] = useState<boolean>(false)
+  const [loading, setLoading] = useState<boolean>(true)
 
   const sortOption = ['LOWER PRICE', 'HIGHER PRICE']
 
-  //GET products method
   useEffect(() => {
     fetch(productsURL, {
       method: 'GET',
@@ -30,8 +30,12 @@ const Products: React.FC = () => {
       .then(response => response.json())
       .then((products: Product[]) => {
         setProducts(products)
+        setLoading(false)
       })
-      .catch(error => console.log(error))
+      .catch(_ => {
+        alert('Could not retrieve products.')
+        setLoading(false)
+      })
   }, [])
 
   //Add to cart function
@@ -89,8 +93,8 @@ const Products: React.FC = () => {
         </div>
         <div className="productHeaderQuote">
           <p>
-            "I declare after all there is no enjoyment like reading! How much sooner one tires of any thing than of a
-            book! When I have a house of my own, I shall be miserable if I have not an excellent library.”
+            &ldquo;I declare after all there is no enjoyment like reading! How much sooner one tires of any thing than
+            of a book! When I have a house of my own, I shall be miserable if I have not an excellent library.&rdquo;
           </p>
           <h4>Jane Austen, Pride and Prejudice</h4>
         </div>
@@ -114,10 +118,12 @@ const Products: React.FC = () => {
 
       {/*Products section*/}
       <div className="productPageBody">
-        {filteredProducts?.length === 0 ? (
+        {loading ? (
+          <h2>Loading products...</h2>
+        ) : filteredProducts?.length === 0 ? (
           <h2>No books found...</h2>
         ) : (
-          filteredProducts?.map(product => (
+          filteredProducts.map(product => (
             <ProductCard
               key={product.id}
               id={product.id}

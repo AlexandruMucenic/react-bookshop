@@ -29,7 +29,7 @@ const Cart: React.FC<CartProps> = ({ addedToCart, showCart, handleClose }) => {
     })
       .then(response => response.json())
       .then((data: CartProduct[]) => setCartProducts(data))
-      .catch(error => console.log(error))
+      .catch(error => alert('Could not get cart data.'))
   }, [addedToCart])
 
   const totalCart = cartProducts.reduce((sum, product) => {
