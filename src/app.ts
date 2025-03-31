@@ -1,9 +1,9 @@
 import cors from "cors";
-import express from "express";
+import express, { Request, Response } from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import cart from "./routes/cart.js";
-import products from "./routes/products.js";
+import cart from "./routes/cart";
+import products from "./routes/products";
 
 dotenv.config();
 
@@ -15,8 +15,8 @@ app.use(cors());
 app.use("/products", products);
 app.use("/cart", cart);
 
-app.get("/", (req, res) => {
-  res.send("welcome to the project api...");
+app.get("/", (req: Request, res: Response) => {
+  res.send("Welcome to the project API...");
 });
 
 const uri = process.env.ATLAS_URI;
@@ -27,9 +27,8 @@ app.listen(port, () => {
 });
 
 mongoose
-  .connect(uri, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-  })
+  .connect(uri!)
   .then(() => console.log("MongoDB connection established..."))
-  .catch((error) => console.error("MongoDB connection failed:", error.message));
+  .catch((error: any) =>
+    console.error("MongoDB connection failed:", error.message)
+  );
