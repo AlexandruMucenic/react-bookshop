@@ -22,6 +22,7 @@ interface CartProduct {
 
 const Cart: React.FC<CartProps> = ({ addedToCart, showCart, handleClose }) => {
   const [cartProducts, setCartProducts] = useState<CartProduct[]>([])
+  const CloseIcon = FaTimes as unknown as React.FC<React.SVGProps<SVGSVGElement>>
 
   useEffect(() => {
     fetch(cartURL, {
@@ -89,7 +90,7 @@ const Cart: React.FC<CartProps> = ({ addedToCart, showCart, handleClose }) => {
         {/* Cart Header */}
         <div className="cartHeader">
           <h3 className="cartTitle">Your Cart</h3>
-          <FaTimes className="closeCartBtn" onClick={handleClose} />
+          <CloseIcon className="closeCartBtn" onClick={handleClose} />
         </div>
 
         {/* Cart Body */}

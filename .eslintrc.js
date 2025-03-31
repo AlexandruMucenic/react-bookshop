@@ -27,7 +27,6 @@ module.exports = {
     'no-unused-vars':'off',
     quotes: ['error', 'single'],
     semi: ['error', 'never'],
-    'prettier/prettier': ['error'],
     'no-console': ['error'],
     'react/prop-types': 0,
   },

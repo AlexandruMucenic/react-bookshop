@@ -3,6 +3,10 @@ import { FaFacebook, FaGoodreads, FaInstagram } from 'react-icons/fa'
 import './Footer.css'
 
 const Footer: React.FC = () => {
+  const FacebookIcon = FaFacebook as unknown as React.FC<React.SVGProps<SVGSVGElement>>
+  const InstagramIcon = FaInstagram as unknown as React.FC<React.SVGProps<SVGSVGElement>>
+  const GoodreadsIcon = FaGoodreads as unknown as React.FC<React.SVGProps<SVGSVGElement>>
+
   return (
     <footer className="footerContainer">
       {/* Details */}
@@ -27,13 +31,13 @@ const Footer: React.FC = () => {
         <p>© 2023 Proudly created by Mius</p>
         <div className="iconContainer">
           <button>
-            <FaFacebook />
+            <FacebookIcon />
           </button>
           <button>
-            <FaInstagram />
+            <InstagramIcon />
           </button>
           <button>
-            <FaGoodreads />
+            <GoodreadsIcon />
           </button>
         </div>
       </div>

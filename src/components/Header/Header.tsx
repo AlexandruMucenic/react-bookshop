@@ -7,6 +7,9 @@ import Logo from '../../images/logo/logo.svg'
 import ShoppingBag from '../../images/nav/ShoppingBag.svg'
 
 const Header: React.FC = () => {
+  const CloseIcon = FaTimes as unknown as React.FC<React.SVGProps<SVGSVGElement>>
+  const BarsIcon = FaBars as unknown as React.FC<React.SVGProps<SVGSVGElement>>
+
   const [showCart, setShowCart] = useState<boolean>(false)
 
   const navRef = useRef<HTMLDivElement | null>(null)
@@ -43,11 +46,11 @@ const Header: React.FC = () => {
 
         {/* Cart Buttons */}
         <button className="nav-btn nav-close-btn" onClick={toggleNavbar}>
-          <FaTimes />
+          <CloseIcon />
         </button>
       </nav>
       <button className="nav-btn" onClick={toggleNavbar}>
-        <FaBars />
+        <BarsIcon />
       </button>
 
       {/* Cart */}

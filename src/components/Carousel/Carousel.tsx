@@ -9,7 +9,6 @@ const Carousel: React.FC = () => {
   const [index, setIndex] = useState<number>(0)
   const delay = 2500
 
-  // Specify the type for the ref as NodeJS.Timeout (for Node.js timers) or number (for browser timers)
   const timeoutRef = useRef<NodeJS.Timeout | null>(null)
 
   function resetTimeout() {
@@ -22,12 +21,13 @@ const Carousel: React.FC = () => {
     resetTimeout()
     timeoutRef.current = setTimeout(
       () => setIndex(prevIndex => (prevIndex === carouselImages.length - 1 ? 0 : prevIndex + 1)),
-      delay
+      delay,
     ) as unknown as NodeJS.Timeout
 
     return () => {
       resetTimeout()
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [index])
 
   return (
